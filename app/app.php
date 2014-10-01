@@ -16,3 +16,8 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app['dao.article'] = $app->share(function ($app) {
     return new MicroCMS\DAO\ArticleDAO($app['db']);
 });
+$app['dao.comment'] = $app->share(function ($app) {
+    $commentDAO = new MicroCMS\DAO\CommentDAO($app['db']);
+    $commentDAO->setArticleDAO($app['dao.article']);
+    return $commentDAO;
+});

@@ -16,3 +16,8 @@ body {
     color: white;
     min-height: 3%
 }
+
+
+.articleTitle:hover, .articleTitle:focus {
+    text-decoration: none;
+}
