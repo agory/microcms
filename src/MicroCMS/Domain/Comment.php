@@ -14,7 +14,7 @@ class Comment
     /**
      * Comment author.
      *
-     * @var string
+     * @var \MicroCMS\Domain\User
      */
     private $author;
 

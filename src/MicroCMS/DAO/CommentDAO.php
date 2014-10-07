@@ -10,6 +10,15 @@ class CommentDAO extends DAO
      * @var \MicroCMS\DAO\ArticleDAO
      */
     protected $articleDAO;
+    
+     /**
+     * @var \MicroCMS\DAO\UserDAO
+     */
+    protected $userDAO;
+
+    public function setUserDAO($userDAO) {
+        $this->userDAO = $userDAO;
+    }
 
     public function setArticleDAO($articleDAO) {
         $this->articleDAO = $articleDAO;
@@ -35,6 +44,8 @@ class CommentDAO extends DAO
         return $comments;
     }
 
+   
+
     /**
      * Creates an Comment object based on a DB row.
      *
@@ -46,11 +57,16 @@ class CommentDAO extends DAO
         $articleId = $row['art_id'];
         $article = $this->articleDAO->find($articleId);
 
+        // Find the associated user
+        $userId = $row['usr_id'];
+        $user = $this->userDAO->find($userId);
+
         $comment = new Comment();
         $comment->setId($row['com_id']);
-        $comment->setAuthor($row['com_author']);
         $comment->setContent($row['com_content']);
         $comment->setArticle($article);
+        $comment->setAuthor($user);
         return $comment;
     }
+
 }
