@@ -1,6 +1,10 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;use MicroCMS\Domain\Comment;
+use MicroCMS\Domain\Article;
+use MicroCMS\Domain\User;
+use MicroCMS\Form\Type\CommentType;
+
 
 // Returns all articles
 $app->get('/', function () use ($app) {
