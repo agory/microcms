@@ -187,7 +187,7 @@ class DateType extends AbstractType
             return array(
                 'year' => $emptyValue,
                 'month' => $emptyValue,
-                'day' => $emptyValue
+                'day' => $emptyValue,
             );
         };
 
@@ -237,6 +237,9 @@ class DateType extends AbstractType
 
         $resolver->setAllowedTypes(array(
             'format' => array('int', 'string'),
+            'years'  => 'array',
+            'months' => 'array',
+            'days'   => 'array',
         ));
     }
 

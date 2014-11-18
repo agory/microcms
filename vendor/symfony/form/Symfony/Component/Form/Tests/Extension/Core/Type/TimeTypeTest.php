@@ -276,7 +276,7 @@ class TimeTypeTest extends TypeTestCase
         $displayedData = array(
             'hour' => (int) $outputTime->format('H'),
             'minute' => (int) $outputTime->format('i'),
-            'second' => (int) $outputTime->format('s')
+            'second' => (int) $outputTime->format('s'),
         );
 
         $this->assertEquals($displayedData, $form->getViewData());
@@ -302,7 +302,7 @@ class TimeTypeTest extends TypeTestCase
         $displayedData = array(
             'hour' => (int) $outputTime->format('H'),
             'minute' => (int) $outputTime->format('i'),
-            'second' => (int) $outputTime->format('s')
+            'second' => (int) $outputTime->format('s'),
         );
 
         $this->assertDateTimeEquals($dateTime, $form->getData());
@@ -510,8 +510,8 @@ class TimeTypeTest extends TypeTestCase
             'widget' => 'single_text',
             'with_seconds' => true,
             'attr' => array(
-                'step' => 30
-            )
+                'step' => 30,
+            ),
         ));
 
         $view = $form->createView();
@@ -671,6 +671,36 @@ class TimeTypeTest extends TypeTestCase
         $this->factory->create('time', null, array(
             'with_minutes' => false,
             'with_seconds' => true,
+        ));
+    }
+
+    /**
+     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
+     */
+    public function testThrowExceptionIfHoursIsInvalid()
+    {
+        $this->factory->create('time', null, array(
+            'hours' => 'bad value',
+        ));
+    }
+
+    /**
+     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
+     */
+    public function testThrowExceptionIfMinutesIsInvalid()
+    {
+        $this->factory->create('time', null, array(
+            'minutes' => 'bad value',
+        ));
+    }
+
+    /**
+     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
+     */
+    public function testThrowExceptionIfSecondsIsInvalid()
+    {
+        $this->factory->create('time', null, array(
+            'seconds' => 'bad value',
         ));
     }
 }

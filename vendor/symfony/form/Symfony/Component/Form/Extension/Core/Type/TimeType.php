@@ -177,7 +177,7 @@ class TimeType extends AbstractType
             return array(
                 'hour' => $emptyValue,
                 'minute' => $emptyValue,
-                'second' => $emptyValue
+                'second' => $emptyValue,
             );
         };
 
@@ -220,6 +220,12 @@ class TimeType extends AbstractType
                 'text',
                 'choice',
             ),
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'hours'   => 'array',
+            'minutes' => 'array',
+            'seconds' => 'array',
         ));
     }
 
