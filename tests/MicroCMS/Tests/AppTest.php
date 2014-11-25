@@ -39,6 +39,9 @@ class AppTest extends WebTestCase
         // Simulate sessions for testing
         $app['session.test'] = true;
 
+        // Enable anonymous access to admin zone
+        $app['security.access_rules'] = array();
+
         return $app;
     }
 
@@ -53,6 +56,12 @@ class AppTest extends WebTestCase
             array('/'),
             array('/article/1'),
             array('/login'),
+            array('/admin'),
+            array('/admin/article/add'),
+            array('/admin/article/1/edit'),
+            array('/admin/comment/1/edit'),
+            array('/admin/user/add'),
+            array('/admin/user/1/edit')
             ); 
     }
 }
